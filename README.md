@@ -10,3 +10,4 @@ Added Features
 --------------
 
 * Support for `offsetX` and `offsetY` style options that can be used to make cluster icons off-center. Useful if you want a pin-shaped cluster marker, for example.
+* Support a negative value for the X anchor. This adds padding-right instead of padding-left, in order to cut back the area labels can use on the right side instead of the left side.
