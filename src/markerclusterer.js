@@ -56,6 +56,10 @@
  *       'textColor': (string) The text color.
  *       'textSize': (number) The text size.
  *       'backgroundPosition': (string) The position of the backgound x, y.
+ *       'offsetX': (number) The number of pixels to offset a cluster
+ *                  marker in the X axis, from being centered over its point.
+ *       'offsetY': (number) The number of pixels to offset a cluster
+ *                  marker in the Y axis, from being centered over its point.
  * @constructor
  * @extends google.maps.OverlayView
  */
@@ -1022,6 +1026,10 @@ Cluster.prototype.updateIcon = function() {
  *     'textColor': (string) The text color.
  *     'textSize': (number) The text size.
  *     'backgroundPosition: (string) The background postition x, y.
+ *     'offsetX': (number) The number of pixels to offset a cluster
+ *                marker in the X axis, from being centered over its point.
+ *     'offsetY': (number) The number of pixels to offset a cluster
+ *                marker in the Y axis, from being centered over its point.
  * @param {number=} opt_padding Optional padding to apply to the cluster icon.
  * @constructor
  * @extends google.maps.OverlayView
@@ -1103,8 +1111,18 @@ ClusterIcon.prototype.getPosFromLatLng_ = function(latlng) {
 ClusterIcon.prototype.draw = function() {
   if (this.visible_) {
     var pos = this.getPosFromLatLng_(this.center_);
-    this.div_.style.top = pos.y + 'px';
-    this.div_.style.left = pos.x + 'px';
+    var left = pos.x;
+    var top  = pos.y;
+
+    if (this.offsetX_) {
+      left += this.offsetX_;
+    }
+    if (this.offsetY_) {
+      top += this.offsetY_;
+    }
+
+    this.div_.style.top = top + 'px';
+    this.div_.style.left = left + 'px';
   }
 };
 
@@ -1187,6 +1205,8 @@ ClusterIcon.prototype.useStyle = function() {
   this.anchor_ = style['anchor'];
   this.textSize_ = style['textSize'];
   this.backgroundPosition_ = style['backgroundPosition'];
+  this.offsetX_ = style['offsetX'];
+  this.offsetY_ = style['offsetY'];
 };
 
 
@@ -1236,8 +1256,18 @@ ClusterIcon.prototype.createCss = function(pos) {
   var txtColor = this.textColor_ ? this.textColor_ : 'black';
   var txtSize = this.textSize_ ? this.textSize_ : 11;
 
-  style.push('cursor:pointer; top:' + pos.y + 'px; left:' +
-      pos.x + 'px; color:' + txtColor + '; position:absolute; font-size:' +
+  var left = pos.x;
+  var top  = pos.y;
+
+  if (this.offsetX_) {
+    left += this.offsetX_;
+  }
+  if (this.offsetY_) {
+    top += this.offsetY_;
+  }
+
+  style.push('cursor:pointer; top:' + top + 'px; left:' +
+      left + 'px; color:' + txtColor + '; position:absolute; font-size:' +
       txtSize + 'px; font-family:Arial,sans-serif; font-weight:bold');
   return style.join('');
 };

@@ -9,4 +9,4 @@ The original repository can be found here: http://google-maps-utility-library-v3
 Added Features
 --------------
 
-Coming soon...
+* Support for `offsetX` and `offsetY` style options that can be used to make cluster icons off-center. Useful if you want a pin-shaped cluster marker, for example.
