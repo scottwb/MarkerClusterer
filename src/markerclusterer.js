@@ -55,6 +55,7 @@
  *       'anchor': (Array) The anchor position of the label text.
  *       'textColor': (string) The text color.
  *       'textSize': (number) The text size.
+ *       'textAlign' : (string) The text alignment to use, e.g.: 'center'
  *       'backgroundPosition': (string) The position of the backgound x, y.
  *       'offsetX': (number) The number of pixels to offset a cluster
  *                  marker in the X axis, from being centered over its point.
@@ -1025,6 +1026,7 @@ Cluster.prototype.updateIcon = function() {
  *     'anchor': (Array) The anchor position of the label text.
  *     'textColor': (string) The text color.
  *     'textSize': (number) The text size.
+ *     'textAlign' : (string) The text alignment to use, e.g.: 'center'
  *     'backgroundPosition: (string) The background postition x, y.
  *     'offsetX': (number) The number of pixels to offset a cluster
  *                marker in the X axis, from being centered over its point.
@@ -1204,6 +1206,7 @@ ClusterIcon.prototype.useStyle = function() {
   this.textColor_ = style['textColor'];
   this.anchor_ = style['anchor'];
   this.textSize_ = style['textSize'];
+  this.textAlign_ = style['textAlign'];
   this.backgroundPosition_ = style['backgroundPosition'];
   this.offsetX_ = style['offsetX'];
   this.offsetY_ = style['offsetY'];
@@ -1258,6 +1261,10 @@ ClusterIcon.prototype.createCss = function(pos) {
 
   var txtColor = this.textColor_ ? this.textColor_ : 'black';
   var txtSize = this.textSize_ ? this.textSize_ : 11;
+
+  if (this.textAlign_) {
+    style.push('text-align: ' + this.textAlign_ + ';');
+  }
 
   var left = pos.x;
   var top  = pos.y;
