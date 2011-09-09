@@ -57,6 +57,7 @@
  *       'textSize': (number) The text size.
  *       'textAlign' : (string) The text alignment to use, e.g.: 'center'
  *       'fontFamily' : (string) A CSS font-family string to use for the label.
+ *       'fontWeight' : (string) A CSS font-weight string to use for the label.
  *       'backgroundPosition': (string) The position of the backgound x, y.
  *       'offsetX': (number) The number of pixels to offset a cluster
  *                  marker in the X axis, from being centered over its point.
@@ -1029,6 +1030,7 @@ Cluster.prototype.updateIcon = function() {
  *     'textSize': (number) The text size.
  *     'textAlign' : (string) The text alignment to use, e.g.: 'center'
  *     'fontFamily' : (string) A CSS font-family string to use for the label.
+ *     'fontWeight' : (string) A CSS font-weight string to use for the label.
  *     'backgroundPosition: (string) The background postition x, y.
  *     'offsetX': (number) The number of pixels to offset a cluster
  *                marker in the X axis, from being centered over its point.
@@ -1210,6 +1212,7 @@ ClusterIcon.prototype.useStyle = function() {
   this.textSize_ = style['textSize'];
   this.textAlign_ = style['textAlign'];
   this.fontFamily_ = style['fontFamily'];
+  this.fontWeight_ = style['fontWeight'];
   this.backgroundPosition_ = style['backgroundPosition'];
   this.offsetX_ = style['offsetX'];
   this.offsetY_ = style['offsetY'];
@@ -1265,6 +1268,7 @@ ClusterIcon.prototype.createCss = function(pos) {
   var txtColor = this.textColor_ ? this.textColor_ : 'black';
   var txtSize = this.textSize_ ? this.textSize_ : 11;
   var fontFamily = this.fontFamily_ ? this.fontFamily_ : 'Arial,sans-serif';
+  var fontWeight = this.fontWeight_ ? this.fontWeight_ : 'bold';
 
   if (this.textAlign_) {
     style.push('text-align: ' + this.textAlign_ + ';');
@@ -1282,7 +1286,8 @@ ClusterIcon.prototype.createCss = function(pos) {
 
   style.push('cursor:pointer; top:' + top + 'px; left:' +
       left + 'px; color:' + txtColor + '; position:absolute; font-size:' +
-      txtSize + 'px; font-family:' + fontFamily + '; font-weight:bold');
+      txtSize + 'px; font-family:' + fontFamily + '; font-weight:' +
+      fontWeight +';');
   return style.join('');
 };
 
