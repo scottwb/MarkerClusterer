@@ -12,3 +12,4 @@ Added Features
 * Support for `offsetX` and `offsetY` style options that can be used to make cluster icons off-center. Useful if you want a pin-shaped cluster marker, for example.
 * Support a negative value for the X `anchor`. This adds padding-right instead of padding-left, in order to cut back the area labels can use on the right side instead of the left side.
 * Support for `textAlign` style option, that takes `left`, `center`, `right`, to override the default value used by the library. Useful with a negative X anchor for right-justification.
+* Support for `fontFamily` style option that allows you to style the text label with a different font.
