@@ -14,4 +14,5 @@ Added Features
 * Support for `textAlign` style option, that takes `left`, `center`, `right`, to override the default value used by the library. Useful with a negative X anchor for right-justification.
 * Support for `fontFamily` style option that allows you to style the text label with a different font.
 * Support for `fontWeight` style option that allows you to override the default bold text label.
+* Don't re-center the map on the clicked cluster if the map is already at maximum zoom and not performing any additional zoom-in.
 
