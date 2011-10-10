@@ -168,7 +168,7 @@ function MarkerClusterer(map, opt_markers, opt_options) {
   // Add the map event listeners
   var that = this;
   google.maps.event.addListener(this.map_, 'zoom_changed', function() {
-    var maxZoom = that.map_.mapTypes[that.map_.getMapTypeId()].maxZoom;
+    var maxZoom = that.map_.maxZoom;
     var zoom = that.map_.getZoom();
     if (zoom < 0 || zoom > maxZoom) {
       return;
@@ -351,7 +351,7 @@ MarkerClusterer.prototype.setMaxZoom = function(maxZoom) {
  *  @return {number} The max zoom level.
  */
 MarkerClusterer.prototype.getMaxZoom = function() {
-  return this.maxZoom_ || this.map_.mapTypes[this.map_.getMapTypeId()].maxZoom;
+  return this.maxZoom_ || this.map_.maxZoom;
 };
 
 
